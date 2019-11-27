@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1200272212167769530}
   - component: {fileID: -8529135792408054929}
   - component: {fileID: 6759639213228300158}
+  - component: {fileID: 6989547102449945337}
   m_Layer: 0
   m_Name: Torpedo
   m_TagString: Untagged
@@ -139,3 +140,15 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   compressRotation: 1
+--- !u!114 &6989547102449945337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58311728787095634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2cf8da6e4ac58e408bc6ca570da8a69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

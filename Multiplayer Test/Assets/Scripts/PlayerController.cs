@@ -5,28 +5,12 @@ namespace Mirror
 {
     public class PlayerController : NetworkBehaviour
     {
-        [SyncVar]
-        Transform spriteTransform;
-
-        /*void OnDisable()
-        {
-            if (isLocalPlayer)
-            {
-                Camera.main.transform.SetParent(null);
-                Camera.main.transform.localPosition = new Vector3(0f, 50f, 0f);
-                Camera.main.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
-            }
-        }*/
+        public GameObject torpedo;
 
         public override void OnStartLocalPlayer()
         {
             base.OnStartLocalPlayer();
 
-            spriteTransform = GetComponentInChildren<SpriteRenderer>().transform;
-
-            /*Camera.main.transform.SetParent(transform);
-            Camera.main.transform.localPosition = new Vector3(0f, 0f, -8f);
-            Camera.main.transform.localEulerAngles = new Vector3(0f, 0f, 0f);*/
         }
 
         [Header("Movement Settings")]
@@ -42,6 +26,12 @@ namespace Mirror
 
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
+
+            if(Input.GetKeyDown("space"))
+            {
+                GameObject projectile = Instantiate(torpedo, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                projectile.transform.rotation = transform.rotation;
+            }
         }
 
         void FixedUpdate()
@@ -49,9 +39,9 @@ namespace Mirror
             if (!isLocalPlayer) return;
 
             float turnRate = 150f;
-            spriteTransform.Rotate(0f, 0f, -horizontal * Time.fixedDeltaTime * turnRate);
+            transform.Rotate(0f, 0f, -horizontal * Time.fixedDeltaTime * turnRate);
 
-            Vector2 direction = spriteTransform.up;
+            Vector2 direction = transform.up;
             direction.Normalize();
             direction *= moveSpeed * vertical * Time.fixedDeltaTime;
 
